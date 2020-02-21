@@ -13,39 +13,17 @@ import javax.persistence.Id;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.task.db.enums.Status;
+
 import javax.persistence.GeneratedValue;
 
 @Entity 
 public class Task 
 {
-	public Task() {
-		super();
-	}
-	public Task(int ticketNumber, String ticketLink, String estimatedHours, Date dateOfAssignment, Date dateOfDelivery,
-			Date deadLine, Status status, Date createBy, Date createAt, Date updateBy, Date updateAt, boolean delay) {
-		super();
-		this.ticketNumber = ticketNumber;
-		this.ticketLink = ticketLink;
-		this.estimatedHours = estimatedHours;
-		this.dateOfAssignment = dateOfAssignment;
-		this.dateOfDelivery = dateOfDelivery;
-		this.deadLine = deadLine;
-		this.status = status;
-		this.createBy = createBy;
-		this.createAt = createAt;
-		this.updateBy = updateBy;
-		this.updateAt = updateAt;
-		this.delay = delay;
-	}
-	public enum Status
-	{
-		ASSIGNED,PENDING,COMPLETED,SUBMITTED,IN_REVIEW,ACCEPTED,CLOSED
-	}
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int ticketNumber;
 	@Column(unique=true,nullable=false)
-	
 	private String ticketLink;
 	@Column(nullable=false)
 	private String estimatedHours;
@@ -129,7 +107,26 @@ public class Task
 	public void setUpdateAt(Date updateAt) {
 		this.updateAt = updateAt;
 	}
-	
+
+	public Task() {
+		super();
+	}
+	public Task(int ticketNumber, String ticketLink, String estimatedHours, Date dateOfAssignment, Date dateOfDelivery,
+			Date deadLine, Status status, Date createBy, Date createAt, Date updateBy, Date updateAt, boolean delay) {
+		super();
+		this.ticketNumber = ticketNumber;
+		this.ticketLink = ticketLink;
+		this.estimatedHours = estimatedHours;
+		this.dateOfAssignment = dateOfAssignment;
+		this.dateOfDelivery = dateOfDelivery;
+		this.deadLine = deadLine;
+		this.status = status;
+		this.createBy = createBy;
+		this.createAt = createAt;
+		this.updateBy = updateBy;
+		this.updateAt = updateAt;
+		this.delay = delay;
+	}
 	@Override
 	public String toString() {
 		return "Task [ticketNumber=" + ticketNumber + ", ticketLink=" + ticketLink + ", estimatedHours="
