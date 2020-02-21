@@ -43,7 +43,6 @@ public class Task
 	}
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	
 	private int ticketNumber;
 	@Column(unique=true,nullable=false)
 	
