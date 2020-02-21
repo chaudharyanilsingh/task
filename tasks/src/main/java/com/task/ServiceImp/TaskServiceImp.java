@@ -57,6 +57,12 @@ public class TaskServiceImp implements TaskService{
 		Date date=tasks.get().getCreateAt();		
 		task.setCreateAt(date);
 		
+		String s=task.getEstimatedHours();
+		String[] time = s.split(":");
+		Float hour = Float.parseFloat(time[0]);
+	    Float mins = Float.parseFloat(time[1]);
+	    Float finaltime=hour+mins/60;
+	    task.setEstimatedHours(finaltime.toString());
 		taskRepository.save(task);
 		
 	}
