@@ -32,8 +32,10 @@ public class TaskController
 	public String addtask(@RequestBody TaskDto taskdto)
 	{
 
+		
 		Task task = modelMapper.map(taskdto, Task.class);
 		taskService.saveTask(task);
+		
 		return "data saved";
 	}
 

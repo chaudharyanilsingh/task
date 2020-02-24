@@ -1,6 +1,6 @@
 package com.task.ServiceImp;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,14 +21,23 @@ public class TaskServiceImp implements TaskService{
 	public void saveTask(Task task) 
 	{
 		
-		String s=task.getEstimatedHours();
-		String[] time = s.split(":");
+		String[] time = task.getEstimatedHours().split(":");
 		Float hour = Float.parseFloat(time[0]);
 	    Float mins = Float.parseFloat(time[1]);
 	    Float finaltime=hour+mins/60;
 	    task.setEstimatedHours(finaltime.toString());
-		
-		taskRepository.save(task);
+	    
+	    
+	
+	   if(task.getDateOfDelivery().compareTo(task.getDeadLine())>0)
+	    {
+	    	task.setDelay(true);
+	    }
+	    else
+	    {
+	    	task.setDelay(false);
+	    }
+	    taskRepository.save(task);
 		
 		
 	}
@@ -53,16 +62,26 @@ public class TaskServiceImp implements TaskService{
 
 	@Override
 	public void upadateTask(Task task) {
-		Optional<Task> tasks=taskRepository.findById(task.getTicketNumber());
+	/*	Optional<Task> tasks=taskRepository.findById(task.getTicketNumber());
 		Date date=tasks.get().getCreateAt();		
 		task.setCreateAt(date);
-		
-		String s=task.getEstimatedHours();
-		String[] time = s.split(":");
+*/
+		String[] time = task.getEstimatedHours().split(":");
 		Float hour = Float.parseFloat(time[0]);
 	    Float mins = Float.parseFloat(time[1]);
 	    Float finaltime=hour+mins/60;
 	    task.setEstimatedHours(finaltime.toString());
+	    
+	    
+	    if(task.getDateOfDelivery().compareTo(task.getDeadLine())>0)
+	    {
+	    	task.setDelay(true);
+	    }
+	    else
+	    {
+	    	task.setDelay(false);
+
+	    }
 		taskRepository.save(task);
 		
 	}
