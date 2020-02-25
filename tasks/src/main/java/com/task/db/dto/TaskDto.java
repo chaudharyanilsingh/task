@@ -1,8 +1,7 @@
 package com.task.db.dto;
-
+import java.time.LocalDate;
 import java.util.Date;
-import com.task.db.enums.Status;
-
+import com.task.db.enums.AllStatus.Status;
 public class TaskDto {
 	
 	private int ticketNumber;
@@ -12,10 +11,10 @@ public class TaskDto {
 	private Date dateOfDelivery;
 	private Date deadLine;
 	private  Status status;
-	private Date createBy;
-	private Date createAt;
-	private Date updateBy;
-	private Date updateAt;
+	private Date createdBy;
+	private LocalDate createdDate;
+	private Date updatedBy;
+	private LocalDate updatedDate;
 	private boolean delay;
 	public int getTicketNumber() {
 		return ticketNumber;
@@ -59,35 +58,35 @@ public class TaskDto {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	public Date getCreateBy() {
-		return createBy;
-	}
-	public void setCreateBy(Date createBy) {
-		this.createBy = createBy;
-	}
-	public Date getCreateAt() {
-		return createAt;
-	}
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
-	}
-	public Date getUpdateBy() {
-		return updateBy;
-	}
-	public void setUpdateBy(Date updateBy) {
-		this.updateBy = updateBy;
-	}
-	public Date getUpdateAt() {
-		return updateAt;
-	}
-	public void setUpdateAt(Date updateAt) {
-		this.updateAt = updateAt;
-	}
-	public boolean isDelay() {
+		public boolean isDelay() {
 		return delay;
 	}
 	public void setDelay(boolean delay) {
 		this.delay = delay;
+	}
+	public Date getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(Date createdBy) {
+		this.createdBy = createdBy;
+	}
+	public LocalDate getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(LocalDate createdDate) {
+		this.createdDate = createdDate;
+	}
+	public Date getUpdatedBy() {
+		return updatedBy;
+	}
+	public void setUpdatedBy(Date updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+	public LocalDate getUpdatedDate() {
+		return updatedDate;
+	}
+	public void setUpdatedDate(LocalDate updatedDate) {
+		this.updatedDate = updatedDate;
 	}
 
 

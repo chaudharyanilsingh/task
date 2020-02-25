@@ -1,7 +1,6 @@
 package com.task.db.entity;
 
 import java.util.Date;
-import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,20 +8,11 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import com.task.db.enums.Status;
-
+import com.task.db.enums.AllStatus.Status;
 import javax.persistence.GeneratedValue;
 
 @Entity
-public class Task {
+public class Task extends Basetimes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ticketNumber;
@@ -43,26 +33,10 @@ public class Task {
 	@Column(nullable = false)
 	private Status status;
 
-	private String createBy;
-
-	@Column(nullable = false,updatable=false)
-	private LocalDate createAt;
-
-	private String updateBy;
-
-	private LocalDate updateAt;
-
 	private boolean delay;
 
-	@PrePersist
-	public void prePersist() {
-		createAt = updateAt = LocalDate.now();
-	}
-
-	@PreUpdate
-	public void preUpdate() {
-		updateAt = LocalDate.now();
-	}
+	
+	
 
 	public int getTicketNumber() {
 		return ticketNumber;
@@ -120,44 +94,13 @@ public class Task {
 		this.status = status;
 	}
 
-	public String getCreateBy() {
-		return createBy;
-	}
-
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-
-	public LocalDate getCreateAt() {
-		return createAt;
-	}
-
-	public void setCreateAt(LocalDate createAt) {
-		this.createAt = createAt;
-	}
-
-	public String getUpdateBy() {
-		return updateBy;
-	}
-
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
-
-	public LocalDate getUpdateAt() {
-		return updateAt;
-	}
-
-	public void setUpdateAt(LocalDate updateAt) {
-		this.updateAt = updateAt;
-	}
 
 	public Task() {
 		super();
 	}
 
 	public Task(int ticketNumber, String ticketLink, String estimatedHours, Date dateOfAssignment, Date dateOfDelivery,
-			Date deadLine, Status status, String createBy, LocalDate createAt, String updateBy, LocalDate updateAt, boolean delay) {
+			Date deadLine, Status status, boolean delay) {
 		super();
 		this.ticketNumber = ticketNumber;
 		this.ticketLink = ticketLink;
@@ -166,20 +109,9 @@ public class Task {
 		this.dateOfDelivery = dateOfDelivery;
 		this.deadLine = deadLine;
 		this.status = status;
-		this.createBy = createBy;
-		this.createAt = createAt;
-		this.updateBy = updateBy;
-		this.updateAt = updateAt;
 		this.delay = delay;
 	}
 
-	@Override
-	public String toString() {
-		return "Task [ticketNumber=" + ticketNumber + ", ticketLink=" + ticketLink + ", estimatedHours="
-				+ estimatedHours + ", dateOfAssignment=" + dateOfAssignment + ", dateOfDelivery=" + dateOfDelivery
-				+ ", deadLine=" + deadLine + ", status=" + status + ", createBy=" + createBy + ", createAt=" + createAt
-				+ ", updateBy=" + updateBy + ", updateAt=" + updateAt + ", delay=" + delay + "]";
-	}
 
 	public boolean isDelay() {
 		return delay;
@@ -187,6 +119,13 @@ public class Task {
 
 	public void setDelay(boolean delay) {
 		this.delay = delay;
+	}
+
+	@Override
+	public String toString() {
+		return "Task [ticketNumber=" + ticketNumber + ", ticketLink=" + ticketLink + ", estimatedHours="
+				+ estimatedHours + ", dateOfAssignment=" + dateOfAssignment + ", dateOfDelivery=" + dateOfDelivery
+				+ ", deadLine=" + deadLine + ", status=" + status + ", delay=" + delay + "]";
 	}
 
 }

@@ -1,0 +1,10 @@
+package com.task.Repository;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.task.db.entity.Project;
+@Repository 
+public interface ProjectRepository extends CrudRepository<Project,Integer> {
+
+}
