@@ -8,10 +8,12 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.task.db.enums.AllStatus.Status;
 import javax.persistence.GeneratedValue;
-
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Task extends Basetimes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

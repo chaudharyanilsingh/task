@@ -14,7 +14,7 @@ public class TaskServiceImp implements TaskService {
 	private TaskRepository taskRepository;
 
 	@Override
-	public void saveTask(Task task) {
+	public Task saveTask(Task task) {
 
 		String[] time = task.getEstimatedHours().split(":");
 		Float hour = Float.parseFloat(time[0]);
@@ -27,7 +27,7 @@ public class TaskServiceImp implements TaskService {
 		} else {
 			task.setDelay(false);
 		}
-		taskRepository.save(task);
+		return taskRepository.save(task);
 
 	}
 

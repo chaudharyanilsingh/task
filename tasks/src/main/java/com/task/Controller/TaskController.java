@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.task.Service.TaskService;
 import com.task.db.dto.TaskDto;
 import com.task.db.entity.Task;
+import com.task.common.Response; 
 
 @RestController 
 @RequestMapping(value="task")
@@ -29,24 +32,21 @@ public class TaskController
 	ModelMapper modelMapper = new ModelMapper();
 	
 	@PostMapping
-	public String addtask(@RequestBody TaskDto taskdto)
+	public ResponseEntity<Response> addtask(@RequestBody TaskDto taskdto)
 	{
-
-		
 		Task task = modelMapper.map(taskdto, Task.class);
-		taskService.saveTask(task);
 		
-		return "data saved";
+		return new ResponseEntity<>(new Response("ok").setResult(taskService.saveTask(task)),HttpStatus.OK);
 	}
 
 	@PutMapping
-	public String  updatetask(@RequestBody TaskDto taskdto)
+	public ResponseEntity<String>  updatetask(@RequestBody TaskDto taskdto)
 	{
 		             //Task task1=taskService.showById(task.getTicketNumber()).get();
 		
 		Task task=modelMapper.map(taskdto,Task.class);
 		taskService.upadateTask(task);
-		return "data updated";
+		return new ResponseEntity<>("update ok ",HttpStatus.OK);
 	}
 	@DeleteMapping(value="{id}")
 	public String deletatask(@PathVariable(value="id") int id)

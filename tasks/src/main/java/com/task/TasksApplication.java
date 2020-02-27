@@ -10,7 +10,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class TasksApplication {
 
 	public static void main(String[] args) {
-		
+
 		SpringApplication.run(TasksApplication.class, args);
 	}
 

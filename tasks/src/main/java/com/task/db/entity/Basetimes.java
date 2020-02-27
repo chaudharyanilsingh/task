@@ -1,12 +1,10 @@
 package com.task.db.entity;
 
 import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-
 @MappedSuperclass
 public class Basetimes {
 	@Column(nullable=false, updatable=false)

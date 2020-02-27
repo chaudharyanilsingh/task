@@ -1,7 +1,11 @@
 package com.task.db.dto;
 import java.time.LocalDate;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.task.db.enums.AllStatus.Status;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TaskDto {
 	
 	private int ticketNumber;

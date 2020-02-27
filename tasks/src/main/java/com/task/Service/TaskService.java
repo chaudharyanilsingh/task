@@ -5,16 +5,13 @@ import java.util.Optional;
 
 import com.task.db.entity.Task;
 
-public interface TaskService {
+public interface TaskService extends Iservice<Task> {
 
-	void saveTask(Task task);
-
-	void deletetask(int id);
+	
 
 	Iterable<Task> showall();
 
 	Optional<Task> showById(int id);
 
-	void upadateTask(Task task);
 
 }
